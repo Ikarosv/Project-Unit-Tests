@@ -41,25 +41,15 @@ const calculator = (number1, number2) => ({
     sub: number1 - number2,
 });
 
-function retornaValorCerto(type, element, key) {
+const arrayGenerator = (type, object) => {
   if (type === 'keys') {
-    return key;
+    return Object.keys(object);
   }
   if (type === 'values') {
-    return element;
+    return Object.values(object);
   }
-  return [key, element];
-}
-
-const arrayGenerator = (type, object) => {
-  const arrFinal = [];
-  for (const key in object) {
-    if (Object.hasOwnProperty.call(object, key)) {
-      const element = object[key];
-      arrFinal.push(retornaValorCerto(type, element, key));
-    }
-  }
-  return arrFinal;
+  return Object.entries(object);
 };
+console.log(arrayGenerator('values', calculator(1, 2)));
 
 module.exports = { calculator, arrayGenerator };
